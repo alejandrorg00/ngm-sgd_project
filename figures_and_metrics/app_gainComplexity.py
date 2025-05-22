@@ -32,12 +32,14 @@ datasets = {
 
 method = 'ENTROPY GAIN'
 colors = {
-    'splitMNIST':     'indianred',
-    'splitCIFAR10':   'chocolate',
+    'splitMNIST':     'crimson',
+    'splitCIFAR10':   'sienna',
     'permMNIST':      'goldenrod',
     'rotMNIST':       'orangered',
     'domainCIFAR100': 'lightsalmon',
 }
+
+
 marker = 'o'
 fits = {}
 
@@ -120,8 +122,8 @@ fig.legend(
     loc='upper center',
     ncol=len(handles_line1),
     frameon=False,
-    fontsize=16,
-    bbox_to_anchor=(0.5, 1.05)
+    fontsize=18,
+    bbox_to_anchor=(0.5, 1.09)
 )
 
 fig.legend(
@@ -129,8 +131,8 @@ fig.legend(
     loc='upper center',
     ncol=len(handles_line2),
     frameon=False,
-    fontsize=16,
-    bbox_to_anchor=(0.5, 1.00)
+    fontsize=18,
+    bbox_to_anchor=(0.5, 1.03)
 )
 
 
