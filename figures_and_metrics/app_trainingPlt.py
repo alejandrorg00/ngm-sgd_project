@@ -26,6 +26,7 @@ datasets = {
 }
 
 # --- GridSpec ---
+plt.rc('axes', titlesize=15, labelsize=16)
 fig = plt.figure(figsize=(12, 6))
 gs  = fig.add_gridspec(2, 6)
 
@@ -48,15 +49,11 @@ for ax, key in zip(axes, keys):
         data = pickle.load(f)
 
     for method in methods:
-        # mean and std arrays
         acc = np.array(data[0][method]['acc_train'])
         sd  = np.array(data[1][method]['acc_train'])
-
         x = np.arange(len(acc))
 
-        # plot mean
         ax.plot(x, acc, label=legend_labels[method], color=colors[method], lw=2)
-        # fill ±std
         ax.fill_between(x,
                         acc - sd,
                         acc + sd,
@@ -79,9 +76,10 @@ handles = [Line2D([], [], color=colors[m], lw=2, label=legend_labels[m])
            for m in methods]
 fig.legend(handles=handles,
            loc='upper center',
+           fontsize = 16,
            ncol=len(methods),
            frameon=False,
-           bbox_to_anchor=(0.5, 0.97))
+           bbox_to_anchor=(0.5, 1.025))
 
 fig.tight_layout(rect=[0, 0, 1, 0.94])
 plt.show()

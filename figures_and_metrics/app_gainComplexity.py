@@ -45,8 +45,8 @@ fits = {}
 display_names = {
     'splitMNIST':     'Split MNIST',
     'splitCIFAR10':   'Split CIFAR-10',
-    'permMNIST':      'Perm MNIST',
-    'rotMNIST':       'Rot MNIST',
+    'permMNIST':      'Permuted MNIST',
+    'rotMNIST':       'Rotated MNIST',
     'domainCIFAR100': 'Domain CIFAR-100'
 }
 
@@ -86,7 +86,6 @@ for name, cfg in datasets.items():
     )
     ax.plot(x, m * x + b, linestyle='--', color=colors[name])
 
-# Axis limits & ticks
 ax_c.set_xlim(*xlim_class)
 ax_c.set_ylim(*ylim_class)
 ax_c.set_xticks([1, 2, 3])
@@ -94,15 +93,13 @@ ax_d.set_xlim(*xlim_domain)
 ax_d.set_ylim(*ylim_domain)
 ax_d.set_xticks([1, 2, 3])
 
-# Labels & titles
 ax_c.set_title('Class-Incremental Tasks', fontsize=18)
-ax_c.set_xlabel('Task Index', fontsize=16)
-ax_c.set_ylabel('Neuronal Gain', fontsize=16)
+ax_c.set_xlabel('Task Index', fontsize=20)
+ax_c.set_ylabel('Neuronal Gain', fontsize=20)
 ax_d.set_title('Domain-Incremental Tasks', fontsize=18)
-ax_d.set_xlabel('Task Index', fontsize=16)
-ax_d.set_ylabel('Neuronal Gain', fontsize=16)
+ax_d.set_xlabel('Task Index', fontsize=20)
+ax_d.set_ylabel('Neuronal Gain', fontsize=20)
 
-# Remove box spines, black ticks, fewer Y-ticks
 for ax in (ax_c, ax_d):
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
@@ -114,14 +111,28 @@ handles = [
     Line2D([], [], marker=marker, linestyle='none', color=colors[k], label=display_names[k])
     for k in datasets.keys()
 ]
+
+handles_line1 = handles[:2]
+handles_line2 = handles[2:]
+
 fig.legend(
-    handles=handles,
+    handles=handles_line1,
     loc='upper center',
-    ncol=len(handles),
+    ncol=len(handles_line1),
     frameon=False,
-    fontsize=14,
-    bbox_to_anchor=(0.5, 0.97)
+    fontsize=16,
+    bbox_to_anchor=(0.5, 1.05)
 )
+
+fig.legend(
+    handles=handles_line2,
+    loc='upper center',
+    ncol=len(handles_line2),
+    frameon=False,
+    fontsize=16,
+    bbox_to_anchor=(0.5, 1.00)
+)
+
 
 plt.tight_layout(rect=[0, 0, 1, 0.94])
 plt.show()
